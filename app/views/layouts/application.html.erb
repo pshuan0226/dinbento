@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dinbento</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "來訂便當", orders_path, class: 'navbar-brand' %>
+      </div>
+      <div class="collapse navbar-collapse">
+      <% if logged_in? %>
+        <%= current_user[:name] %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to '新增訂單', new_order_path %></li>
+          <li><%= link_to 'logout', logout_path%></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'login', login_path %></li>
+        </ul>
+      <% end %>
+      </div>
+    </div>
+   </nav>
+    <%= yield %>
+  </body>
+</html>
